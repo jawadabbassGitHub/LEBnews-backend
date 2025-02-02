@@ -1,0 +1,25 @@
+<h2> Update topic </h2>
+
+<% if (message.length > 0) { %>
+<div class="alert alert-success"><%= message %></div>
+<% } %>
+
+<form action="/sub-topics/update/<%= subTopic.id %>" method="post">
+
+    <div class="form-group">
+        <label for="exampleInputSubTopicName"> Sub Topic name</label>
+        <input type="text" class="form-control" id="exampleInputSubTopicName" aria-describedby="subTopicNameHelp"
+            placeholder="Enter sub topic name" name="sub_topic_name" value="<%= subTopic.sub_topic_name %>">
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" name="topic_id">
+            <option> Select </option>
+            <% for(var topic of topics) { %>
+            <option value="<%= topic.id %>" <% if(topic.id == subTopic.topic_id) {%> selected <%}%> > <%= topic.topic_name %></option>
+            <% } %>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

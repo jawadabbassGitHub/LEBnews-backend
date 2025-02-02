@@ -1,0 +1,80 @@
+<form action="/best-news/submit-news" method="post">
+  <div class="table-responsive">
+    <table class="table table-bordered" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Content</th>
+          <th>Date</th>
+          <th>Image</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (news && news.length > 0) { %>
+          <% for (let item of news) { %>
+            <tr>
+              <td>
+                <input type="checkbox" name="news" value="<%= item.id %>">
+              </td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="headline-<%= item.id %>"
+                  value="<%= item.headline || '' %>"
+                  placeholder="Enter title here"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="underheadline-<%= item.id %>"
+                  value="<%= item.underheadline || '' %>"
+                  placeholder="Enter description here"
+                />
+              </td>
+              <td>
+                <textarea
+                  class="form-control"
+                  name="content-<%= item.id %>"
+                  placeholder="Enter content here"
+                ><%= item.content || '' %></textarea>
+              </td>
+              <td>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="date-<%= item.id %>"
+                  value="<%= item.date || '' %>"
+                />
+              </td>
+              <td>
+                <% if (item.image) { %>
+                  <img src="<%= item.image %>" alt="News Image" height="50" width="50">
+                <% } else { %>
+                  <span>No image available</span>
+                <% } %>
+              </td>
+              <td>
+                <% if (item.url) { %>
+                  <a href="<%= item.url %>" target="_blank">Read More</a>
+                <% } else { %>
+                  <span>No URL available</span>
+                <% } %>
+              </td>
+            </tr>
+          <% } %>
+        <% } else { %>
+          <tr>
+            <td colspan="7" class="text-center">No news available.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Submit Selected News</button>
+</form>

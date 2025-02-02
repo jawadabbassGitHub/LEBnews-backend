@@ -1,0 +1,66 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-table"></i> Approved News
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead class="text-center">
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Content</th>
+            <th>Date</th>
+            <th>Image</th>
+            <th>URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (newsList && newsList.length > 0) { %>
+            <% for (let item of newsList) { 
+                const formattedDate = item.date
+                  ? new Date(item.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })
+                  : 'No date available';
+            %>
+              <tr>
+                <td><%= item.headline %></td>
+                <td><%= item.underheadline || 'No description available' %></td>
+                <td class="text-truncate" style="max-width: 200px;">
+                  <%= item.content || 'No content available' %>
+                </td>
+                <td><%= formattedDate %></td>
+                <td>
+                  <% if (item.image) { %>
+                    <img 
+                      src="<%= item.image %>" 
+                      alt="News Image for <%= item.headline %>" 
+                      height="80" 
+                      width="80"
+                      class="img-fluid">
+                  <% } else { %>
+                    <span>No image available</span>
+                  <% } %>
+                </td>
+                <td>
+                  <% if (item.url) { %>
+                    <a href="<%= item.url %>" target="_blank">Read More</a>
+                  <% } else { %>
+                    <span>No URL available</span>
+                  <% } %>
+                </td>
+              </tr>
+            <% } %>
+          <% } else { %>
+            <tr>
+              <td colspan="6" class="text-center">No approved news available.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<% if(message.length > 0) { %>
+    <div class="alert alert-success">
+        <%= message %>
+    </div>
+<% }%>
+
+<form action="/topics/post-form" method="post">
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Topic name</label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter topic name" name="topic_name">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

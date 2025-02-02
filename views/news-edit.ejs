@@ -1,0 +1,78 @@
+<h2> Update News </h2>
+
+<% if (message.length > 0) { %>
+    <div class="alert alert-success"><%= message %></div>
+<% } %>
+
+<form action="/news/update-form/<%= news.id %>" enctype="multipart/form-data" method="post">
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Title </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter title" name="title" value="<%= news.title %>">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Sub Title </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter sub title" name="sub_title" value="<%= news.sub_title %>">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> News Source </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter news source" name="news_source" value="<%= news.news_source %>">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> News Detail </label>
+        <textarea id="editor1" name="news_detail"><%= news.news_detail %> </textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Video Link </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter video link" name="video_link" value="<%= news.video_link %>">
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" name="topic_id">
+            <option> Select a topic </option>
+            <% for(var topic of topics) { %>
+            <option value="<%= topic.id %>" <% if(news.topic_id == topic.id) { %> selected <%}%>> <%= topic.topic_name %></option>
+            <% } %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" name="sub_topic_id">
+            <option> Select a sub topic </option>
+            <% for(var subTopic of subTopics) { %>
+            <option value="<%= topic.id %>" <% if(news.sub_topic_id == subTopic.id) {%> selected <%}%>> <%= subTopic.sub_topic_name %></option>
+            <% } %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> News photo </label>
+        <input type="file" name="newsPhoto" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp">
+    </div>
+
+    <div class="form-group">
+        Make Featured News <input type="checkbox" name="is_featured" <% if(news.is_featured == 1) { %> checked <%} %>/>
+    </div>
+
+    <div class="form-group">
+        Make Top Story <input type="checkbox" name="is_top_story" <% if(news.is_top_story == 1) { %> checked <%} %>/>
+    </div>
+
+    <div class="form-group">
+        Make Video News <input type="checkbox" name="is_video" <% if(news.is_video == 1) { %> checked <%} %>/>
+    </div>
+
+    <div class="form-group">
+        Make Video News of The Week <input type="checkbox" name="is_video_of_the_day" <% if(news.is_video_of_the_day == 1) { %> checked <%} %>/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

@@ -1,0 +1,10 @@
+<form action="/topics/update-form/<%= topic.id %>" method="post">
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Topic name</label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter topic name" name="topic_name" value="<%= topic.topic_name %>">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

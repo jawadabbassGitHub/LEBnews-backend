@@ -1,0 +1,78 @@
+<h2> Create News </h2>
+
+<% if (message.length > 0) { %>
+    <div class="alert alert-success"><%= message %></div>
+<% } %>
+
+<form action="/news/post-form" enctype="multipart/form-data" method="post">
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Title </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter title" name="title">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Sub Title </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter sub title" name="sub_title">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> News Source </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter news source" name="news_source">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> News Detail </label>
+        <textarea id="editor1" name="news_detail"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> Video Link </label>
+        <input type="text" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp"
+            placeholder="Enter video link" name="video_link">
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" name="topic_id">
+            <option> Select a topic </option>
+            <% for(var topic of topics) { %>
+            <option value="<%= topic.id %>"> <%= topic.topic_name %></option>
+            <% } %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" name="sub_topic_id">
+            <option> Select a sub topic </option>
+            <% for(var subTopic of subTopics) { %>
+            <option value="<%= topic.id %>"> <%= subTopic.sub_topic_name %></option>
+            <% } %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputTopicName"> News photo </label>
+        <input type="file" name="newsPhoto" class="form-control" id="exampleInputTopicName" aria-describedby="topicNameHelp">
+    </div>
+
+    <div class="form-group">
+        Make Featured News <input type="checkbox" name="is_featured"/>
+    </div>
+
+    <div class="form-group">
+        Make Top Story <input type="checkbox" name="is_top_story"/>
+    </div>
+
+    <div class="form-group">
+        Make Video News <input type="checkbox" name="is_video"/>
+    </div>
+
+    <div class="form-group">
+        Make Video News of The Week <input type="checkbox" name="is_video_of_the_day"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
